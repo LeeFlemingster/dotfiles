@@ -9,7 +9,7 @@ if has('gui_running')
     set background=light
     colorscheme solarized
 else
-    set background=light
+    set background=dark
 endif
 filetype plugin on
 
