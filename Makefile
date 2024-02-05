@@ -1,4 +1,2 @@
-.ONESHELL:
-
 install:
-	stow --adopt .
+	stow --adopt -v .

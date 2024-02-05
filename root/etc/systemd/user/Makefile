@@ -7,10 +7,6 @@ all: config systemd box dropbox google proton
 config:
 	rclone config
 
-systemd:
-	sudo ln -s -f ~/.stowedconfigs/rclone/rclone@.service /etc/systemd/user/rclone@.service
-	systemctl --user daemon-reload
-
 box:
 	mkdir -p ~/Remote/Box
 	systemctl --user enable --now rclone@Box
