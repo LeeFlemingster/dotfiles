@@ -87,30 +87,7 @@ function zle-keymap-select() {
 }
 
 
-RPROMPT=''
-
-#function zle-line-init zle-keymap-select { 
-#PROMPT='\ ${topline_start}\
-#${boarder_start}${current_dir}\ 
-#${boarder_mid}${user_host}\ 
-#$(git_prompt)\
-#${boarder_mid}${ret_status}\ 
-#${boarder_mid}${hist_no}\ 
-#${boarder_end}\
-#
-#${bottomline_start} \
-#${${KEYMAP/vicmd/%F{yellow\}%B%#%b%F{yellow\}}/(main|viins)/%B%F{green\}%#%F{reset\}}
-#' zle reset-prompt}
-
-#PROMPT='\
-#${boarder_start}${current_dir}\
-#${boarder_mid}${user_host}\
-#$(git_prompt)\
-#${boarder_mid}${ret_status}\
-#${boarder_mid}${hist_no}\
-#${boarder_end}\
-#${${KEYMAP/vicmd/%F{yellow\}%B%#%b%F{yellow\}}/(main|viins)/%B%F{green\}%#%F{reset\}}'
-
+unset RPROMPT
 
 function zle-line-init zle-keymap-select { 
 PROMPT='\
