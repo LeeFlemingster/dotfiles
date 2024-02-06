@@ -1,0 +1,48 @@
+#!/bin/bash
+
+dataset=suse
+
+# Get last snapshot number (hex)
+last_snapshot=`zfs list -t snapshot | grep "$dataset/root@[0-9-]*__[0-9:]*__TOH-[0-9A-F]*-[0-9A-F]*" | tail -n1 | gawk '{print $1}'`
+echo last snapshot $last_snapshot
+last_snapshot_number_hex=`echo $last_snapshot | sed -e 's/.*TOH-\([0-9A-F]*\)-[0-9A-F]*/\1/'`
+#echo last snapshot number in hex $last_snapshot_number_hex
+
+
+# Get next snapshot number
+next_snapshot_number_dec=$((16#$last_snapshot_number_hex+1))
+#echo next snapshot number in decimal $next_snapshot_number_dec
+next_snapshot_number_hex=`printf '%X' $(($next_snapshot_number_dec))`
+#echo next snapshot number in hex $next_snapshot_number_hex
+
+# Get next snapshot id
+next_snapshot_id=`echo "l($((($next_snapshot_number_dec^$next_snapshot_number_dec-1)+1)))/l(2)" | bc -l | xargs printf '%.0f' | xargs printf '%X'`
+#echo next snapshot id $next_snapshot_id
+
+# Get next snapshot name
+next_snapshot_postfix=$(date +"%Y-%m-%d__%H:%M:%S")__TOH-$next_snapshot_number_hex-$next_snapshot_id
+#echo next snapshot postfix $next_snapshot_postfix
+
+# Get last snapshot name with same id
+last_snapshot_same_id=`zfs list -t snapshot|grep "$dataset/root@[0-9-]*__[0-9:]*__TOH-[0-9A-F]*-$next_snapshot_id"`
+#echo Last snapshot with the same id $last_snapshot_same_id
+last_snapshot_postfix=`echo $last_snapshot_same_id | sed -e 's/.*@\([^[:space:]]*\).*/\1/'`
+#echo Last snapshot postfix $last_snapshot_postfix
+
+# Take new snapshot
+echo creating snapshots
+echo zroot/$dataset/root@$next_snapshot_postfix
+echo zroot/$dataset/home@$next_snapshot_postfix
+logger -t zfs-snapshot "Creating snapshot zroot/$dataset/root@$next_snapshot_postfix"
+zfs snapshot zroot/$dataset/root@$next_snapshot_postfix
+logger -t zfs-snapshot "Creating snapshot zroot/$dataset/home@$next_snapshot_postfix"
+zfs snapshot zroot/$dataset/home@$next_snapshot_postfix
+
+# If delete old backup
+echo deleting snapshots 
+echo zroot/$dataset/root@$last_snapshot_postfix
+echo zroot/$dataset/home@$last_snapshot_postfix
+logger -t zfs-snapshot "Deleting snapshot zroot/$dataset/root@$last_snapshot_postfix"
+zfs destroy zroot/$dataset/root@$last_snapshot_postfix
+logger -t zfs-snapshot "Deleting snapshot zroot/$dataset/home@$last_snapshot_postfix"
+zfs destroy zroot/$dataset/home@$last_snapshot_postfix
