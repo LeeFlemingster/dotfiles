@@ -4,7 +4,8 @@ brave
 rclone
 Makefile
 root
-.stow
+\.stow
+.*\.swp
 
 RCS
 .+,v
