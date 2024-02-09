@@ -218,3 +218,5 @@ highlight ColorColumn ctermbg=7
 
 "" Add pathogen
 execute pathogen#infect()
+
+
