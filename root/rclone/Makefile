@@ -1,8 +1,19 @@
 #!/bin/bash
 # https://github.com/rclone/rclone/wiki/Systemd-rclone-mount#systemd
 
-all: config systemd box dropbox google proton
+all: config systemd-restart box dropbox google proton
 
+systemd-restart:
+	systemctl --user daemon-reload
+
+stop-all: # Stop all network drives
+	systemctl  --user disable --now rclone@Box
+	systemctl  --user disable --now rclone@Dropbox
+	systemctl  --user disable --now rclone@GoogleDrive
+	systemctl  --user disable --now rclone@GooglePhotos
+	systemctl  --user disable --now rclone@ProtonDrive
+
+start-all: box dropbox google proton # Stop all network drives
 
 config:
 	rclone config
