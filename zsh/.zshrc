@@ -93,7 +93,7 @@ export PATH="/usr/local/opt/grep/libexec/gnubin:$PATH"
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
-   export EDITOR='vim'
+   export EDITOR='nvim'
 # else
 #   export EDITOR='mvim'
 # fi
@@ -110,6 +110,10 @@ KEYTIMEOUT=1
 #source .zsh/git-prompt/zshrc.sh
 DIRSTACKSIZE=8
 setopt autopushd pushdminus pushdsilent pushdtohome
+
+alias vim="nvim"
+alias vi="nvim"
+alias vimdiff='nvim -d'
 alias ls='ls --color -F'
 alias dirs='dirs -v'
 alias grep='grep --colour=auto'
