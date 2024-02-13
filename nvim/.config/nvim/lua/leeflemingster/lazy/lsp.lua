@@ -29,6 +29,17 @@ return{
                 "lua_ls",
                 "rust_analyzer",
                 "tsserver",
+                "pyright",
+                --[[
+                -- Python lsps.
+                "jedi_language_server",
+                "pyre",
+                "pyright",
+                "pylyzer",
+                "sourcery",
+                "pylsp", -- docs
+                "ruff_lsp",
+                --]]
             },
             handlers = {
                 function (server_name) -- default handler (optional)
