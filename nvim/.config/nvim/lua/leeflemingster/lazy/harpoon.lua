@@ -2,7 +2,7 @@ return {
     "ThePrimeagen/harpoon",
     branch = "harpoon2",
 
-    dependencies = { 
+    dependencies = {
         "nvim-lua/plenary.nvim",
         "nvim-telescope/telescope.nvim",
     },
@@ -49,7 +49,7 @@ return {
             }):find()
         end
 
-        vim.keymap.set("n", "<leader>ht", function() toggle_telescope(harpoon:list()) end,
+        vim.keymap.set("n", "<leader>th", function() toggle_telescope(harpoon:list()) end,
         { desc = "Open harpoon window" })
 
     end
