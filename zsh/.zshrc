@@ -176,3 +176,5 @@ zle -N down-line-or-beginning-search
 [[ -n "${key[Down]}" ]] && bindkey -- "${key[Down]}" down-line-or-beginning-search
 #autoload -Uz promptinit
 #promptinit
+#
+eval "$(zoxide init --cmd cd zsh)"
