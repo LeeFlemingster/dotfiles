@@ -19,9 +19,9 @@ toh-zfs-unstow:
 	sudo stow -D -v --target=/ toh-zfs
 
 brave-stow: # brave desktop icon for gnome that enables touchpad gestures. Dont
-	# forget to set brave://flags prefered ozone platform to wayland.
+	# don't forget to set brave://flags prefered ozone platform to wayland.
 	sudo stow -v --target=/ brave
 
-brave-unstow: 
+brave-unstow:
 	sudo stow -D -v --target=/ brave
 
