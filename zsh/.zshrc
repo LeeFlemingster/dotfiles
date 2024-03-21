@@ -114,6 +114,7 @@ setopt autopushd pushdminus pushdsilent pushdtohome
 alias vim="nvim"
 alias vi="nvim"
 alias vimdiff='nvim -d'
+alias svim='sudo nvim'
 alias ls='ls --color -F'
 alias dirs='dirs -v'
 alias grep='grep --colour=auto'
