@@ -17,6 +17,8 @@ vim.opt.backup = false
 vim.opt.undodir = os.getenv("HOME") .. "/.config/nvim/undodir"
 vim.opt.undofile = true
 
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
 vim.on_key(function(char)
