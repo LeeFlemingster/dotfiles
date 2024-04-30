@@ -21,12 +21,17 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
-vim.on_key(function(char)
-    if vim.fn.mode() == "n" then
-        local new_hlsearch = vim.tbl_contains({ "n", "N", "*", "#", "?", "/" ,"v" }, vim.fn.keytrans(char))
-        if vim.opt.hlsearch:get() ~= new_hlsearch then vim.opt.hlsearch = new_hlsearch end
-    end
-end, vim.api.nvim_create_namespace "auto_hlsearch")
+-- Highlight when yanking (copying) text
+--  Try it with `yap` in normal mode
+--  See `:help vim.highlight.on_yank()`
+vim.api.nvim_create_autocmd('TextYankPost', {
+  desc = 'Highlight when yanking (copying) text',
+  group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+})
+
 
 vim.opt.termguicolors = true
 
