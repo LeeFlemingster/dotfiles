@@ -13,8 +13,8 @@ return{
             ls.filetype_extend("python", { "pydoc" })
             vim.keymap.set({"i"}, "<C-K>", function() ls.expand() end, {silent = true})
             --[[
-            vim.keymap.set({"i", "s"}, "<leader>;", function() ls.jump( 1) end, {silent = true})
-            vim.keymap.set({"i", "s"}, "<leader>,", function() ls.jump(-1) end, {silent = true})
+            --vim.keymap.set({"i", "s"}, "<leader>;", function() ls.jump( 1) end, {silent = true})
+            --vim.keymap.set({"i", "s"}, "<leader>,", function() ls.jump(-1) end, {silent = true})
             --]]
 
             vim.keymap.set({"i", "s"}, "<C-E>", function()
