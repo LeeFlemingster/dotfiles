@@ -35,3 +35,6 @@ google:
 proton:
 	mkdir -p ~/Remote/ProtonDrive
 	systemctl --user enable --now rclone@ProtonDrive
+	# Before starting the ProtonDrive open in web browser then provide 2fa
+	# as in the following example.
+    # systemctl --user enable --now rclone@ProtonDrive
