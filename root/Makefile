@@ -25,3 +25,6 @@ brave-stow: # brave desktop icon for gnome that enables touchpad gestures. Dont
 brave-unstow:
 	sudo stow -D -v --target=/ brave
 
+brave-fix:
+	sudo rm /usr/share/applications/brave-browser.desktop
+	sudo stow -v --target=/ brave
