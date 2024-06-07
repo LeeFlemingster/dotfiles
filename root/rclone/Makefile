@@ -37,4 +37,4 @@ proton:
 	systemctl --user enable --now rclone@ProtonDrive
 	# Before starting the ProtonDrive open in web browser then provide 2fa
 	# as in the following example.
-    # systemctl --user enable --now rclone@ProtonDrive
+    # rclone lsd ProtonDrive: --protondrive-2fa=838954
