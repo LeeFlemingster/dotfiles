@@ -18,6 +18,9 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "L", "<C-d>zz")
 vim.keymap.set("n", "H", "<C-u>jzz")
 
+-- Clear last search highlight with esc
+vim.keymap.set("n", "<ESC>", ":noh<CR><ESC>")
+
 -- Centre cursor when searching
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
