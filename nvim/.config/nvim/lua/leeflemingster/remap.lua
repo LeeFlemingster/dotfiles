@@ -13,6 +13,10 @@ vim.keymap.set("n", "J", "mzJ`z")
 -- Scroll up/down and centre cursor
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
+-- Use the following 2 keymaps if the following is set.
+-- vim.opt.scrolloff = 999
+vim.keymap.set("n", "L", "<C-d>zz")
+vim.keymap.set("n", "H", "<C-u>jzz")
 
 -- Centre cursor when searching
 vim.keymap.set("n", "n", "nzzzv")
