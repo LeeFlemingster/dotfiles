@@ -1,0 +1,8 @@
+# Don't include gitk
+git/.config/git/gitk
+
+# Don't include vim kickstart config
+nvim/.config/nvim/lua/kickstart
+
+# Dont't include nvim todo
+nvim/.config/nvim/todo.md
