@@ -1,4 +1,4 @@
-return{
+return {
     "neovim/nvim-lspconfig",
 
     dependencies = {
@@ -14,6 +14,7 @@ return{
     },
 
     config = function()
+        vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
         local cmp = require('cmp')
         local cmp_lsp = require("cmp_nvim_lsp")
         local capabilities = vim.tbl_deep_extend(
@@ -42,9 +43,8 @@ return{
                 --]]
             },
             handlers = {
-                function (server_name) -- default handler (optional)
-
-                    require("lspconfig")[server_name].setup{
+                function(server_name) -- default handler (optional)
+                    require("lspconfig")[server_name].setup {
                         capabilities = capabilities
                     }
                 end,
@@ -65,7 +65,7 @@ return{
             }
         })
 
-        local cmp_select = {behavior = cmp.SelectBehavior.Select}
+        local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
         cmp.setup({
             snippet = {
