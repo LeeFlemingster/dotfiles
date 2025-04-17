@@ -1,3 +1,5 @@
 [user]
 	email = LeeFlemingster@protonmail.com
 	name = Lee Fleming
+[init]
+	defaultBranch = master
