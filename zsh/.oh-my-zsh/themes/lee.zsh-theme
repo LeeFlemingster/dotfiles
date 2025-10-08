@@ -59,7 +59,7 @@ function zle-line-init zle-keymap-select {
 PROMPT='\
 ${GREEN_BOLD}┌─(${reset}%~${GREEN_BOLD})-(${reset}%n${GREEN_BOLD}@${reset}%m$(git_prompt)${GREEN_BOLD})-(${reset}${return_status}${GREEN_BOLD})-(${reset}%h${GREEN_BOLD})${reset} \
 
-${GREEN_BOLD}╰─${reset}${${KEYMAP/vicmd/%F{yellow\}%B%#%b%F{yellow\}}/(main|viins)/%B%F{green\}%#%F{reset\}}%b '
+${GREEN_BOLD}└─${reset}${${KEYMAP/vicmd/%F{yellow\}%B%#%b%F{yellow\}}/(main|viins)/%B%F{green\}%#%F{reset\}}%b '
 zle reset-prompt}
 
 
