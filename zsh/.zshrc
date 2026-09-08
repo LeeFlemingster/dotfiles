@@ -121,11 +121,11 @@ alias grep='grep --colour=auto'
 alias t='todo.sh -t'
 alias p='python /usr/local/bin/Punch.py'
 alias configfiles='git --git-dir=$HOME/git/configfiles/ --work-tree=$HOME'
-alias ls='eza -F'
-alias la='eza -AF'
-alias ll='eza -lF'
-alias lal='eza -lAF'
-#alias ls='ls --color=auto'
+#alias ls='eza -F'
+#alias la='eza -AF'
+#alias ll='eza -lF'
+#alias lal='eza -lAF'
+alias ls='ls --color=auto'
 bindkey -v
 namedir () { $1=$PWD ;  : ~$1 }
 
