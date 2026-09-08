@@ -1,0 +1,9 @@
+#SUBSYSTEM=="input", ATTRS{idVendor}=="4653", ACTION=="add", RUN+="/usr/local/bin/trigger.sh"
+#SUBSYSTEM=="input", ATTRS{idVendor}=="4653", ACTION=="remove", RUN+="/usr/bin/killall evtest"
+
+# 1. When the Corne keyboard is plugged in, run the disable script
+ACTION=="add", SUBSYSTEM=="input", ATTRS{idVendor}=="4653", RUN+="/usr/local/bin/toggle-internal-keyboard.sh disable"
+
+# 2. When the Corne keyboard is unplugged, run the enable script
+ACTION=="remove", SUBSYSTEM=="input", ENV{ID_VENDOR_ID}=="4653", RUN+="/usr/local/bin/toggle-internal-keyboard.sh enable"
+

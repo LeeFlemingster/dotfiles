@@ -28,3 +28,9 @@ brave-unstow:
 brave-fix:
 	sudo rm /usr/share/applications/brave-browser.desktop
 	sudo stow -v --target=/ brave
+
+keyboard:
+	sudo rm /usr/local/bin/toggle-internal-keyboard.sh
+	sudo rm /etc/polkit-1/rules.d/49-toggle-internal-keyboard.rules
+	sudo rm /etc/udev/rules.d/80-toggle-internal-keyboard.rules
+	sudo stow -v --target=/ inhibit-internal-keyboard
