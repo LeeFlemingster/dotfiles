@@ -1,0 +1,78 @@
+;; =====================================================================
+;; KANATA COMPREHENSIVE CONFIG (GASC MODS + ESC-HYPER + WORKING REBIND)
+;; =====================================================================
+
+(defcfg
+  process-unmapped-keys yes
+)
+
+;; 1. Structural hardware key tracking array (UK ISO physical keys)
+(defsrc
+  caps  1    2    3    4    5    6    7    8    9    0    -    =
+  q     w     e     r     t     y     u     i     o     p     [     ]
+  a     s     d     f     g     h     j     k     l     ;     '
+  102d  z     x     c     v     b     n     m     ,     .     /
+  lctl  spc
+)
+
+;; 2. Logic Aliases for Layers, Modifiers, and Layout Swapping
+(defalias
+  ;; Global Hyper modifier combo
+  hyper (multi lctl lshft lalt lmet)
+
+  ;; Caps Lock dual-role: Tap for Escape, Hold for Hyper
+  esc-hyp (tap-hold-release 200 200 esc @hyper)
+
+  ;; Layout Switching via Switch Action logic (Fully compliant triples formatting)
+  ;; Inside Dvorak: If spacebar is hit while lctl is physically compressed, trigger QWERTY
+  dvk-spc (switch
+    ((and (input real lctl))) (layer-switch qwerty) break
+    () spc break
+  )
+
+  ;; Inside QWERTY: If spacebar is hit while lctl is physically compressed, trigger Dvorak
+  qwr-spc (switch
+    ((and (input real lctl))) (layer-switch dvorak) break
+    () spc break
+  )
+
+  ;; --- Preferred GASC Home Row Mods for DVORAK ---
+  d-a (tap-hold-release 200 200 a lshift)
+  d-o (tap-hold-release 200 200 o lmet)
+  d-e (tap-hold-release 200 200 e lalt)
+  d-u (tap-hold-release 200 200 u lctl)
+
+  d-h (tap-hold-release 200 200 h rctl)
+  d-t (tap-hold-release 200 200 t ralt)
+  d-n (tap-hold-release 200 200 n rmet)
+  d-s (tap-hold-release 200 200 s rshift)
+
+  ;; --- Preferred GASC Home Row Mods for QWERTY ---
+  q-a (tap-hold-release 200 200 a lshift)
+  q-s (tap-hold-release 200 200 s lmet)
+  q-d (tap-hold-release 200 200 d lalt)
+  q-f (tap-hold-release 200 200 f lctl)
+
+  q-j (tap-hold-release 200 200 j rctl)
+  q-k (tap-hold-release 200 200 k ralt)
+  q-l (tap-hold-release 200 200 l rmet)
+  q-; (tap-hold-release 200 200 ; rshift)
+)
+
+;; 3. Functional Matrix Layers
+(deflayer dvorak
+  @esc-hyp    1    2    3    4    5    6    7    8    9    0    [    ]
+  '           ,    .    p    y    f    g    c    r    l    /    =
+  @d-a        @d-o @d-e @d-u i    d    @d-h @d-t @d-n @d-s -
+  lsft        ;    q    j    k    x    b    m    w    v    z
+  lctl        @dvk-spc
+)
+
+(deflayer qwerty
+  @esc-hyp    1    2    3    4    5    6    7    8    9    0    -    =
+  q           w    e    r    t    y    u    i    o    p    [    ]
+  @q-a        @q-s @q-d @q-f g    h    @q-j @q-k @q-l @q-; '
+  lsft        z    x    c    v    b    n    m    ,    .    /
+  lctl        @qwr-spc
+)
+
