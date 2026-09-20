@@ -50,6 +50,9 @@
   ;; Shift-dot becomes ) (which is S-0 natively on UK layout)
   dvk-dot (fork . S-0 (lshft rshft))
 
+  ;; Force physical backtick key to output ~ instead of ¬ when shifted on UK layout
+  uk-tilde  (fork grv S-\ (lshft rshft))
+
   ;; --- Preferred GASC Home Row Mods for DVORAK ---
   d-a (tap-hold-release 200 200 a lshift)
   d-o (tap-hold-release 200 200 o lmet)
@@ -75,7 +78,7 @@
 
 ;; 3. Functional Matrix Layers
 (deflayer dvorak
-  grv       1    @uk-shift2 3    4    5    6    7    8    @dvk-9 @dvk-0 [    ]    bspc
+  @uk-tilde  1    @uk-shift2 3    4    5    6    7    8    @dvk-9 @dvk-0 [    ]    bspc
   tab       @uk-shiftq @dvk-comma @dvk-dot p y f    g    c    r    l    /    =    \
   @esc-hyp  @d-a @d-o @d-e @d-u  i    d    @d-h @d-t @d-n @d-s -    ret
   lsft 102d ;    q    j    k    x    b    m    w    v    z    rsft
