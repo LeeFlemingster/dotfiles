@@ -8,11 +8,11 @@
 
 ;; 1. Structural hardware key tracking array (UK ISO physical keys)
 (defsrc
-  caps  1    2    3    4    5    6    7    8    9    0    -    =
-  q     w     e     r     t     y     u     i     o     p     [     ]
-  a     s     d     f     g     h     j     k     l     ;     '
-  102d  z     x     c     v     b     n     m     ,     .     /
-  lctl  spc
+  grv       1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab       q    w    e    r    t    y    u    i    o    p    [    ]    \
+  caps      a    s    d    f    g     h    j    k    l    ;    '    ret
+  lsft 102d z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl lmet lalt           spc            ralt rctl
 )
 
 ;; 2. Logic Aliases for Layers, Modifiers, and Layout Swapping
@@ -35,6 +35,20 @@
     ((and (input real lctl))) (layer-switch dvorak) break
     () spc break
   )
+
+  ;; --- UK ISO Native System Overrides ---
+  uk-shift2 (fork 2 ' (lshft rshft))
+  uk-shiftq (fork ' S-2 (lshft rshft))
+
+  ;; --- New Parentheses & Angle Bracket Forks for Dvorak ---
+  ;; Shift-9 becomes < (which is S-, natively on UK layout)
+  dvk-9 (fork 9 S-, (lshft rshft))
+  ;; Shift-0 becomes > (which is S-. natively on UK layout)
+  dvk-0 (fork 0 S-. (lshft rshft))
+  ;; Shift-comma becomes ( (which is S-9 natively on UK layout)
+  dvk-comma (fork , S-9 (lshft rshft))
+  ;; Shift-dot becomes ) (which is S-0 natively on UK layout)
+  dvk-dot (fork . S-0 (lshft rshft))
 
   ;; --- Preferred GASC Home Row Mods for DVORAK ---
   d-a (tap-hold-release 200 200 a lshift)
@@ -61,18 +75,18 @@
 
 ;; 3. Functional Matrix Layers
 (deflayer dvorak
-  @esc-hyp    1    2    3    4    5    6    7    8    9    0    [    ]
-  '           ,    .    p    y    f    g    c    r    l    /    =
-  @d-a        @d-o @d-e @d-u i    d    @d-h @d-t @d-n @d-s -
-  lsft        ;    q    j    k    x    b    m    w    v    z
-  lctl        @dvk-spc
+  grv       1    @uk-shift2 3    4    5    6    7    8    @dvk-9 @dvk-0 [    ]    bspc
+  tab       @uk-shiftq @dvk-comma @dvk-dot p y f    g    c    r    l    /    =    \
+  @esc-hyp  @d-a @d-o @d-e @d-u  i    d    @d-h @d-t @d-n @d-s -    ret
+  lsft 102d ;    q    j    k    x    b    m    w    v    z    rsft
+  lctl lmet lalt           @dvk-spc       ralt rctl
 )
 
 (deflayer qwerty
-  @esc-hyp    1    2    3    4    5    6    7    8    9    0    -    =
-  q           w    e    r    t    y    u    i    o    p    [    ]
-  @q-a        @q-s @q-d @q-f g    h    @q-j @q-k @q-l @q-; '
-  lsft        z    x    c    v    b    n    m    ,    .    /
-  lctl        @qwr-spc
+  grv       1    @uk-shift2 3    4    5    6    7    8    9    0    -    =    bspc
+  tab       q    w    e    r    t    y    u    i    o    p    [    ]    \
+  @esc-hyp  @q-a @q-s @q-d @q-f  g    h    @q-j @q-k @q-l @q-; '    ret
+  lsft 102d z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl lmet lalt           @qwr-spc       ralt rctl
 )
 
