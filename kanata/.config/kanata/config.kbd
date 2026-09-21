@@ -4,6 +4,11 @@
 
 (defcfg
   process-unmapped-keys yes
+;;  ;; Target ONLY the internal keyboard by its exact name
+;;  linux-dev-names-inclued (
+;;    "AT Translated Set 2 keyboard"
+;;  )
+  linux-dev /dev/input/by-path/platform-i8042-serio-0-event-kbd
 )
 
 ;; 1. Structural hardware key tracking array (UK ISO physical keys)
