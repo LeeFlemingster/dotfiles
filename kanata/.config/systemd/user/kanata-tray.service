@@ -1,0 +1,15 @@
+[Unit]
+Description=Kanata Keyboard Remapper Tray Interface
+After=graphical-session.target
+
+[Service]
+Type=simple
+# Ensure systemd can see your local bin path where files are stored
+Environment="PATH=/home/lee/.local/bin:/usr/bin:/bin"
+ExecStart=/home/lee/.local/bin/kanata-tray
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=graphical-session.target
+
