@@ -42,6 +42,14 @@
     () spc break
   )
 
+  ;; Master Spacebar:
+  ;; - Hold: Momentary shift to layer 2
+  ;; - Tap: Evaluates the Ctrl+Space layout switch, otherwise outputs normal space
+  spc-dvk-tap-hold (tap-hold-release 200 200 @dvk-spc (layer-toggle l2))
+
+  ;; Alternate QWERTY handler to route layout toggle back to Dvorak on tap
+  spc-qwr-tap-hold (tap-hold-release 200 200 @qwr-spc (layer-toggle l2))
+
   ;; --- UK ISO Native System Overrides ---
   uk-shift2 (fork 2 ' (lshft rshft))
   uk-shiftq (fork ' S-2 (lshft rshft))
@@ -88,7 +96,7 @@
   tab       @uk-shiftq @dvk-comma @dvk-dot p y f    g    c    r    l    /    =    \
   @esc-hyp  @d-a @d-o @d-e @d-u  i    d    @d-h @d-t @d-n @d-s -    ret
   lsft 102d ;    q    j    k    x    b    m    w    v    z    rsft
-  lctl lmet lalt           @dvk-spc       ralt rctl
+  lctl lmet lalt           @spc-dvk-tap-hold       ralt rctl
 )
 
 (deflayer qwerty
@@ -96,6 +104,13 @@
   tab       q    w    e    r    t    y    u    i    o    p    [    ]    \
   @esc-hyp  @q-a @q-s @q-d @q-f  g    h    @q-j @q-k @q-l @q-; '    ret
   lsft 102d z    x    c    v    b    n    m    ,    .    /    rsft
-  lctl lmet lalt           @qwr-spc       ralt rctl
+  lctl lmet lalt           @spc-qwr-tap-hold       ralt rctl
 )
 
+(deflayer l2
+  _        _    _    _    _    _    _    _    _    _    _    _    _    _
+  _        _    _    _    _    _    _    _    _    _    _    _    _    _
+  _        1    @uk-shift2    3    4    5    6    7    8     @dvk-9    @dvk-0    _ _
+  _    _   _    _    _    _    _    _    _    _    _    _    _
+  _    _    _              _              _    _
+)
