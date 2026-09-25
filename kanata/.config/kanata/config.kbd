@@ -9,6 +9,7 @@
 ;;    "AT Translated Set 2 keyboard"
 ;;  )
   linux-dev /dev/input/by-path/platform-i8042-serio-0-event-kbd
+  tap-hold-require-prior-idle 150
 )
 
 ;; 1. Structural hardware key tracking array (UK ISO physical keys)
